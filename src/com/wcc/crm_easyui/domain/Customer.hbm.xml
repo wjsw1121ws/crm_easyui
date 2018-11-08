@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 配置表与实体对象的关系 -->
+<!-- package属性:填写一个包名.在元素内部凡是需要书写完整类名的属性,可以直接写简答类名了. -->
+<hibernate-mapping>
+    <!-- 建立类与表的映射 -->
+    <!-- name-类名 table-表名 -->
+    <!--批量抓取batch-size-->
+    <class name="com.wcc.crm_easyui.domain.Customer" table="cst_customer">
+        <!-- 建立类中的属性与表中的主键对应 -->
+        <!-- name-类中属性 column-表中字段 -->
+        <id name="cust_id" column="cust_id">
+            <!-- generator-定义本地的生成策略 native-本地 -->
+            <generator class="native"></generator>
+        </id>
+
+        <!-- 建立类中的普通的属性和表的字段的对应 -->
+        <!-- name-类中属性 column-表中字段 -->
+        <!-- property元素:除id之外的普通属性映射
+				name: 填写属性名
+				column(可选): 填写列名
+				type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型.
+						每个类型有三种填法: java类型|hibernate类型|数据库类型
+				not-null(可选):配置该属性(列)是否不能为空. 默认值:false
+				length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度
+		 -->
+        <property name="cust_name" column="cust_name"></property>
+        <property name="cust_source" column="cust_source"></property>
+        <property name="cust_industry" column="cust_industry"></property>
+        <property name="cust_level" column="cust_level"></property>
+        <property name="cust_phone" column="cust_phone"></property>
+        <property name="cust_mobile" column="cust_mobile"></property>
+        
+        <!--配置一对多关系的映射-set属性-->
+        <!--多的一方的集合的属性名称-->
+        <!--cascade 级联-->
+        <!--inverse放弃外键维权-->
+        <!--抓取策略-fetch="select" lazy="true"默认值-->
+        <!--批量抓取batch-size-->
+    </class>
+
+    <query name="queryAll">from Customer</query>
+
+</hibernate-mapping>

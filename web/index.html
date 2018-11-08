@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入easyui的样式和jquery-->
+    <link rel="stylesheet" type="text/css" href="./themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="./themes/icon.css">
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.easyui.min.js"></script>
+
+    <style>
+        .menu1{
+            text-decoration: none;
+            font-family: 微软雅黑;
+            font-size: medium;
+            color: blue;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            $(".menu1").click(function () {
+                 var tabname = $(this).html();
+                 var url = this.href;
+                 createTabs(tabname,url);
+                 return false;
+            });
+        });
+
+        function createTabs(tabname,url) {
+            var flag = $("#tt").tabs('exists',tabname);
+            if (flag){
+                $("#tt").tabs('select',tabname)
+            }else {
+                $('#tt').tabs('add',{
+                    title:tabname,
+                    content: createurl(url),
+                    closable:true
+                });
+            }
+        }
+
+        function createurl(url) {
+            return "<iframe src='"+url+"' style=\"border: 0px;width: 100%;height: 100%\"></iframe>"
+        }
+    </script>
+
+</head>
+<body>
+<!--<iframe style="border: 0px;width: 100%;height: 100%"></iframe>-->
+<div id="cc" class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',title:'CRM管理系统',split:true" style="height:100px;"></div>
+    <div data-options="region:'west',title:'系统菜单',split:true" style="width:250px;">
+        <div class="easyui-accordion" data-options="fit:true">
+            <div title="客户管理" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
+                <a href="customer.html" class="menu1">客户管理</a>
+            </div>
+            <div title="联系人管理" data-options="iconCls:'icon-ok'" style="padding:10px;">
+                <a href="linkman.html" class="menu1">联系人管理</a>
+            </div>
+            <div title="拜访记录管理" data-options="iconCls:'icon-ok'" style="padding:10px;">
+                <a href="#" class="menu1">拜访记录管理</a>
+            </div>
+            <div title="统计分析" data-options="iconCls:'icon-ok'" style="padding:10px;">
+                <a href="#" class="menu1">统计分析</a>
+            </div>
+            <div title="系统管理" data-options="iconCls:'icon-ok'" style="padding:10px;">
+                <a href="#" class="menu1">系统管理</a>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'center',title:''" style="padding:5px;background:#eee;">
+        <div id="tt" class="easyui-tabs" data-options="fit:true">
+            <div title="欢迎" data-options="closable:true" style="padding:10px">
+                <h3>欢迎来到客户管理系统!</h3>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

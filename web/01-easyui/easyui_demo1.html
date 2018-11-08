@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入easyui的样式和jquery-->
+    <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../themes/icon.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#btn").linkbutton({
+                "iconCls":"icon-search"
+            });
+        });
+    </script>
+</head>
+<body>
+<!--easyui入门方式一:CSS的方式-->
+<a href="#"  class="easyui-linkbutton" data-options="iconCls:'icon-remove'">超链接</a>
+
+<!--easyui入门方式二:JS的方式-->
+<a href="#" id="btn">超链接</a>
+</body>
+</html>
